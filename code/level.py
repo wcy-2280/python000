@@ -178,12 +178,7 @@ class Level:
 			self.rain.update()
 
 		# daytime
-<<<<<<< HEAD
-		if not self.shop_active:
-			self.sky.display(dt)
-=======
 		self.sky.display(dt,self.shop_active)
->>>>>>> fe6668b (first commit)
 
 		# transition overlay
 		if self.player.sleep: # 睡觉
@@ -211,7 +206,7 @@ class CameraGroup(pygame.sprite.Group):
 					offset_rect.center -= self.offset
 					self.display_surface.blit(sprite.image, offset_rect)
 
-					# # anaytics
+					# # anaytics 
 					# if sprite == player:
 					# 	pygame.draw.rect(self.display_surface,'red',offset_rect,5)
 					# 	hitbox_rect = player.hitbox.copy()
