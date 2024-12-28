@@ -178,8 +178,12 @@ class Level:
 			self.rain.update()
 
 		# daytime
+<<<<<<< HEAD
 		if not self.shop_active:
 			self.sky.display(dt)
+=======
+		self.sky.display(dt,self.shop_active)
+>>>>>>> fe6668b (first commit)
 
 		# transition overlay
 		if self.player.sleep: # 睡觉

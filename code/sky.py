@@ -12,9 +12,15 @@ class Sky:
         self.start_color = [255,255,255]
         self.end_color = (38,101,189) # 夜晚颜色值
 
+<<<<<<< HEAD
     def display(self,dt):
         for index, value in enumerate(self.end_color):
             if self.start_color[index] > value: # 变暗
+=======
+    def display(self,dt,shop_active):
+        for index, value in enumerate(self.end_color):
+            if self.start_color[index] > value and not shop_active: # 变暗
+>>>>>>> fe6668b (first commit)
                 self.start_color[index] -= 2 *dt
 
         self.full_surf.fill(self.start_color)
