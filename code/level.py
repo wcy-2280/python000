@@ -122,7 +122,7 @@ class Level:
 	def toggle_shop(self):
 		self.shop_active = not self.shop_active
 
-	# 重置
+	# 重置新的一天
 	def reset(self):
 
 		# plants
@@ -200,7 +200,7 @@ class CameraGroup(pygame.sprite.Group):
 
 		# 遍历每一层，分层顺序描绘
 		for layer in LAYERS.values():
-			for sprite in sorted(self.sprites(), key = lambda sprite: sprite.rect.centery):
+			for sprite in sorted(self.sprites(), key = lambda sprite: sprite.rect.centery): # 按y轴排序
 				if sprite.z == layer:
 					offset_rect = sprite.rect.copy()
 					offset_rect.center -= self.offset

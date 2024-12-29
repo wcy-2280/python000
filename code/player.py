@@ -31,7 +31,7 @@ class Player(pygame.sprite.Sprite): # Player继承Sprite的功能
         self.timers = {
             'tool use': Timer(350,self.use_tool),
             # 'tool switch': Timer(200),
-            'seed use': Timer(350,self.use_seed),
+            'seed use': Timer(100,self.use_seed),
             # 'seed switch': Timer(200),
             'switch': Timer(200),
         }
@@ -141,42 +141,6 @@ class Player(pygame.sprite.Sprite): # Player继承Sprite的功能
                 self.status = 'left'
             else:
                 self.direction.x = 0
-
-
-            # # tool use
-            # if keys[pygame.K_SPACE]:
-            #     # timer for the tool use
-            #     self.timers['tool use'].activate()
-            #     self.direction = pygame.math.Vector2() # 使用工具后停止移动
-            #     self.frame_index = 0 # 动画帧归零
-
-            # # change tool
-            # if keys[pygame.K_q] and not self.timers['tool switch'].active:
-            #     self.timers['tool switch'].activate() # 工具切换后摇
-            #     self.tool_index += 1
-            #     if self.tool_index >= len(self.tools):
-            #         self.tool_index = 0
-            #     # self.tool_index = self.tool_index if self.tool_index < len(self.tools) else 0
-            #     print(self.tool_index)
-            #     self.selected_tool = self.tools[self.tool_index]
-            #     print(self.selected_tool)
-            
-            # # seed use
-            # if keys[pygame.K_LCTRL]:
-            #     self.timers['seed use'].activate()
-            #     self.direction = pygame.math.Vector2()
-            #     self.frame_index = 0
-            #     print('use seed')
-
-            # # change seed
-            # if keys[pygame.K_e] and not self.timers['seed switch'].active:
-            #     self.timers['seed switch'].activate()
-            #     self.seed_index += 1
-            #     if self.seed_index >= len(self.seeds):
-            #         self.seed_index = 0
-            #     self.selected_seed = self.seeds[self.seed_index]
-            #     print(self.selected_seed)
-            
 
             # 手持物品使用
             if keys[pygame.K_SPACE]:
