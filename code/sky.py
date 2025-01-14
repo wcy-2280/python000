@@ -24,9 +24,11 @@ class Sky:
 class Drop(Generic):
     def __init__(self, surf, pos, moving, groups, z):
 
+        self.groups = groups
+
         # general setup
         super().__init__(pos, surf, groups, z)
-        self.lifetime = randint(400,500) # 生存时间
+        self.lifetime = randint(700,800) # 生存时间
         self.start_time = pygame.time.get_ticks() # 起始时间
 
         # moving
@@ -45,7 +47,36 @@ class Drop(Generic):
 
         # timer
         if pygame.time.get_ticks() - self.start_time >= self.lifetime:
+            Floor(pos = self.pos, groups = self.groups)
             self.kill()
+
+class Floor(Generic):
+    def __init__(self, pos, groups):
+
+        floor_frames = import_folder('../graphics/rain/floor')
+
+        # animation setup
+        self.frames = floor_frames # 图片列表
+        self.frame_index = 0 # 图片索引
+
+        # general setup
+        super().__init__(
+            pos = pos, 
+            surf = self.frames[self.frame_index], 
+            groups = groups, 
+            z = LAYERS['rain floor'])
+        
+    def animate(self, dt):
+        # 归零，循环
+        self.frame_index += 5 * dt
+        if self.frame_index >= len(self.frames):
+            self.kill()
+        else:
+            # 图片更新
+            self.image = self.frames[int(self.frame_index)]
+
+    def update(self,dt):
+        self.animate(dt)
 
 # 雨
 class Rain:
@@ -56,14 +87,14 @@ class Rain:
         self.rain_floor = import_folder('../graphics/rain/floor/')
         self.floor_w, self.floor_h = pygame.image.load('../graphics/world/ground.png').get_size()
 
-    # 创造落雨水花
-    def create_floor(self):
-        Drop(
-            surf = choice(self.rain_floor), # 随机图片
-            pos = (randint(0,self.floor_w),randint(0,self.floor_h)), # 随机位置
-            moving = False,
-            groups = self.all_sprites,
-            z = LAYERS['rain floor'])
+    # # 创造落雨水花
+    # def create_floor(self):
+    #     Drop(
+    #         surf = choice(self.rain_floor), # 随机图片
+    #         pos = (randint(0,self.floor_w),randint(0,self.floor_h)), # 随机位置
+    #         moving = False,
+    #         groups = self.all_sprites,
+    #         z = LAYERS['rain floor'])
 
     # 创造落雨
     def create_drops(self):
@@ -76,6 +107,6 @@ class Rain:
 
     # 更新 
     def update(self):
-        self.create_floor()
+        # self.create_floor()
         self.create_drops()
 
