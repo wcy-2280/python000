@@ -50,6 +50,7 @@ class Drop(Generic):
             Floor(pos = self.pos, groups = self.groups)
             self.kill()
 
+# 落雨水花
 class Floor(Generic):
     def __init__(self, pos, groups):
 

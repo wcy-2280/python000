@@ -30,9 +30,7 @@ class Player(pygame.sprite.Sprite): # Player继承Sprite的功能
         # timers
         self.timers = {
             'tool use': Timer(350,self.use_tool),
-            # 'tool switch': Timer(200),
             'seed use': Timer(100,self.use_seed),
-            # 'seed switch': Timer(200),
             'switch': Timer(200),
         }
 
